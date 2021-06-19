@@ -1,0 +1,4 @@
+﻿Request GET /WeatherForecast => 200
+Request GET /WeatherForecast => 200
+Request GET /WeatherForecast => 2006/19/2021 7:24:35 PM
+Request GET /WeatherForecast => 200| Execute time => 6/19/2021 7:25:34 PM
