@@ -11,7 +11,7 @@ namespace Middleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
-
+        static readonly object locker = new();
         public LoggingMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _next = next;
@@ -32,18 +32,10 @@ namespace Middleware
                     context.Request?.Path.Value,
                     context.Response?.StatusCode);
 
-                //using (FileStream fs = new FileStream("Loggs", FileMode.OpenOrCreate))
-                //{
-                //    byte[] arr = Encoding.UTF8.GetBytes($"Request " +
-                //        $"{context.Request?.Method} " +
-                //        $"{context.Request?.Path.Value} => " +
-                //        $"{context.Response?.StatusCode}");
-
-                //    fs.Write(arr);
-                //}
-
-                using (StreamWriter sw = new StreamWriter("Loggs.txt", true, Encoding.UTF8))
+                lock (locker)
                 {
+                    using var sw = new StreamWriter("Loggs.txt", true, Encoding.UTF8);
+
                     sw.WriteLine($"Request " +
                         $"{context.Request?.Method} " +
                         $"{context.Request?.Path.Value} => " +
