@@ -8,6 +8,17 @@ namespace LessonMonitor.API.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
+	public class HomeworksController : ControllerBase
+	{
+		private readonly IHomeworksService _homeworksService;
+        public HomeworksController(IHomeworksService homeworksService)
+        {
+			_homeworksService = homeworksService;
+		}
+	}
+
+		[ApiController]
+	[Route("[controller]")]
 	public class UsersController : ControllerBase
 	{
 		private IUsersService _userService;
