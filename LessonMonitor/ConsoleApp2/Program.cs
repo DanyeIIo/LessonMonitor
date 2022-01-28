@@ -26,7 +26,7 @@ namespace ConsoleApp2
 			ThreadPool.QueueUserWorkItem((x) => GenerateNumber());
 			ThreadPool.QueueUserWorkItem((x) => GenerateGuid());
 
-			Console.WriteLine("Press any key to exit");
+			Console.WriteLine("Press F to continue");
 			Console.ReadKey();
 		}
 
@@ -44,7 +44,7 @@ namespace ConsoleApp2
 			_barrier.AddParticipant();
 			var random = new Random();
 
-			for (int i = 0; i < 6; i++)
+			for (int i = 0; i < 7; i++)
 			{
 				_numbers.Add(random.Next());
 			}
@@ -55,7 +55,7 @@ namespace ConsoleApp2
 		private static void GenerateGuid()
 		{
 			_barrier.AddParticipant();
-			for (int i = 0; i < 2; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				_guids.Add(Guid.NewGuid());
 			}
